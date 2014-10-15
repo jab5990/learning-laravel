@@ -13,5 +13,15 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return 'Home Page';
+});
+
+Route::get('services', function()
+{
+    return 'Services Page';
+});
+
+Route::get('contact', function()
+{
+    return 'Contact Page';
 });
