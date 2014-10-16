@@ -22,6 +22,14 @@ App::after(function($request, $response)
 	//
 });
 
+Route::filter('checksize', function() {
+    $size = Request::segment(3);
+    if ($size < 12 || $size > 24)
+    {
+        return 'Size is not allowed';
+    }
+});
+
 /*
 |--------------------------------------------------------------------------
 | Authentication Filters

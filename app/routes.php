@@ -1,20 +1,24 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
-
 Route::get('/', function()
 {
 	return View::make('home');
 });
+
+/*Route::get('/', function()
+{
+    return Redirect::to('login');
+});*/
+
+/* Route::get('red', function()
+{
+    return Redirect::route('tea');
+});
+
+Route::get('this-is-tea', array('as' => 'tea', function()
+{
+    return 'This is a tea cup';
+})); */
 
 Route::get('services', function()
 {
@@ -44,4 +48,29 @@ Route::post('contact', function()
     }
 
     return 'Message Sent';
+});
+
+/*Route::get('coffee/{kind}/{size?}', array('before' => 'auth', function($kind, $size = null)
+{
+    return 'Requested kind of coffee drink ' . $kind . ' size ' . $size;
+}))->where('size','[0-9]+');
+*/
+
+Route::get('coffee/{kind}/{size?}', array('before' => 'checksize|auth', function($kind, $size = null)
+{
+    return 'Requested kind of coffee drink ' . $kind . ' size ' . $size;
+}));
+
+Route::get('login', function()
+{
+    return '<form action="login" method="post">
+    Username: <input type="text" name="username"><br>
+    Password: <input type="password" name="password">
+    <input type="submit" value="Submit">
+    </form>';
+});
+
+Route::post('login', function()
+{
+    return 'Username:'.$_POST["username"].',Password: '.$_POST["password"];
 });
