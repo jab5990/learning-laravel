@@ -18,10 +18,30 @@ Route::get('/', function()
 
 Route::get('services', function()
 {
-    return 'Services Page';
+    $services = Service::all();
+    return View::make('services', array('services' => $services));
 });
 
 Route::get('contact', function()
 {
-    return 'Contact Page';
+    return View::make('contact');
+});
+
+Route::post('contact', function()
+{
+    $input = Input::all();
+
+    $rules = array(
+        'subject' => 'required',
+        'message' => 'required'
+    );
+
+    $validator = Validator::make($input, $rules);
+
+    if($validator->fails())
+    {
+        return Redirect::to('contact')->withErrors($validator->messages())->withInput();
+    }
+
+    return 'Message Sent';
 });
