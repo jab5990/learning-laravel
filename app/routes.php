@@ -62,8 +62,9 @@ Route::get('coffee/{kind}/{size?}', array('before' => 'checksize|auth', function
 }));
 
 Route::get('login', 'LoginController@showLogin');
+Route::post('login', 'LoginController@processLogin');
 
-Route::post('login', function()
+/*Route::post('login', function()
 {
     return 'Username:'.$_POST["username"].',Password: '.$_POST["password"];
-});
+});*/
