@@ -61,14 +61,7 @@ Route::get('coffee/{kind}/{size?}', array('before' => 'checksize|auth', function
     return 'Requested kind of coffee drink ' . $kind . ' size ' . $size;
 }));
 
-Route::get('login', function()
-{
-    return '<form action="login" method="post">
-    Username: <input type="text" name="username"><br>
-    Password: <input type="password" name="password">
-    <input type="submit" value="Submit">
-    </form>';
-});
+Route::get('login', 'LoginController@showLogin');
 
 Route::post('login', function()
 {
