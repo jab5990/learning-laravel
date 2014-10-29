@@ -5,6 +5,11 @@ Route::get('/', function()
 	return View::make('home');
 });
 
+Route::get('angular', function()
+{
+    return View::make('angular');
+});
+
 /*Route::get('/', function()
 {
     return Redirect::to('login');
